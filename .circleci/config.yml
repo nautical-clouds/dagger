@@ -16,7 +16,12 @@ jobs:
      - kubernetes/install-kubectl
      - run: 
          name: Kube Config
-         command: aws eks --region us-east-1 update-kubeconfig --name releng-eks-circleci
+         command: |
+                  aws configure set profile.default.aws_access_key_id "$AWS_ACCESS_KEY_ID" 
+                  aws configure set profile.default.aws_secret_access_key "$AWS_SECRET_ACCESS_KEY>" 
+                  aws configure set profile.default.region us-east-1
+                  aws configure list --profile default
+                  aws eks --region us-east-1 update-kubeconfig --name releng-eks-circleci
      - run:
          name: Install Dagger CLI
          command: curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=$HOME/.local/bin sh
