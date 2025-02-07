@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@volatile
+  kubernetes: circleci/kubernetes@1.3.1
 
 jobs:
   cp_build:
@@ -12,6 +13,8 @@ jobs:
      - checkout
      - aws-cli/setup:
          profile_name: default
+     - run: aws eks --region us-east-1 update-kubeconfig --name releng-eks-circleci
+     - kubernetes/install-kubectl
      - run:
          name: Install Dagger CLI
          command: curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=$HOME/.local/bin sh
