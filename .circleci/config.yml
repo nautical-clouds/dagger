@@ -26,7 +26,7 @@ jobs:
          name: Install Dagger CLI
          command: curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=$HOME/.local/bin sh
      - run:
-         name: 
+         name: k8s dagger pods
          command: |
                   DAGGER_ENGINE_POD_NAME="$(kubectl get pod \
                   --selector=name=dagger-dagger-helm-engine --namespace=dagger \
