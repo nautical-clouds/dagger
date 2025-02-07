@@ -36,7 +36,7 @@ jobs:
                   _EXPERIMENTAL_DAGGER_RUNNER_HOST="kube-pod://$DAGGER_ENGINE_POD_NAME?namespace=dagger"
                   export _EXPERIMENTAL_DAGGER_RUNNER_HOST
 
-                  dagger query <<EOF
+                  dagger query \<<EOF
                   {
                       container {
                           from(address:"alpine") {
