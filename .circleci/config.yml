@@ -30,4 +30,5 @@ jobs:
 workflows:
   cp_build:
     jobs:
-      - cp_build
+      - cp_build:
+          context: cloud-global
