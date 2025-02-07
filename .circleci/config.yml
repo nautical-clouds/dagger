@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@volatile
+
 jobs:
   cp_build:
     docker:
@@ -7,6 +10,8 @@ jobs:
     steps:
      - setup_remote_docker
      - checkout
+     - aws-cli/setup:
+         profile_name: default
      - run:
          name: Install Dagger CLI
          command: curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=$HOME/.local/bin sh
