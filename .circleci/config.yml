@@ -37,14 +37,14 @@ jobs:
                   export _EXPERIMENTAL_DAGGER_RUNNER_HOST
 
                   dagger query <<EOF
-{
-    container {
-        from(address:"alpine") {
-            withExec(args: ["uname", "-a"]) { stdout }
-        }
-    }
-}
-EOF
+                  {
+                      container {
+                          from(address:"alpine") {
+                              withExec(args: ["uname", "-a"]) { stdout }
+                          }
+                      }
+                  }
+                  EOF
 
      - run: dagger core container from --address "alpine" with-exec --args "echo,hi" 
 
