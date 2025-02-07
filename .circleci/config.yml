@@ -1,10 +1,18 @@
 version: 2.1
-workflows:
-  testing:
-    jobs:
-      - runner
+
 jobs:
-  runner:
-    machine: true
+  cp_build:
+    docker:
+      - image: cimg/base:2024.09
     steps:
-      - run: echo "Hi I'm on Runners!"
+     - setup_remote_docker
+     - checkout
+     - run:
+         name: Install Dagger CLI
+         command: curl -fsSL https://dl.dagger.io/dagger/install.sh | BIN_DIR=$HOME/.local/bin sh
+     - run: dagger core container from --address "alpine" with-exec --args "echo,hi" 
+
+workflows:
+  cp_build:
+    jobs:
+      - cp_build
