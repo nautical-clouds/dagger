@@ -25,6 +25,8 @@ jobs:
                   aws configure list --profile default
                   aws eks --region us-east-1 update-kubeconfig --name releng-eks-circleci
 
+                  kubectl get pods --all-namespaces
+                   
                   DAGGER_ENGINE_POD_NAME="$(kubectl get pod \
                   --selector=name=dagger-dagger-helm-engine --namespace=dagger \
                   --output=jsonpath='{.items[0].metadata.name}')"
