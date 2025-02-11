@@ -6,10 +6,9 @@ orbs:
 
 jobs:
   cp_build:
-    docker:
-      - image: cimg/base:2024.09
+    machine: 
+      image: default
     steps:
-     - setup_remote_docker
      - checkout
      - aws-cli/setup:
          profile_name: default
