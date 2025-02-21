@@ -6,7 +6,8 @@ orbs:
 
 jobs:
   cp_build:
-    machine: true
+    docker:
+      - image: cimg/base:2021.11
     resource_class: nautical-clouds/container
     steps:
      - checkout
