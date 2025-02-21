@@ -20,12 +20,6 @@ jobs:
      - run:
          name: k8s dagger pods
          command: |
-                  aws configure set profile.default.aws_access_key_id "$AWS_ACCESS_KEY_ID" 
-                  aws configure set profile.default.aws_secret_access_key "$AWS_SECRET_ACCESS_KEY>" 
-                  aws configure set profile.default.region us-east-1
-                  aws configure list --profile default
-                  aws eks --region us-east-1 update-kubeconfig --name releng-eks-circleci
-
                   kubectl get pods --all-namespaces
                    
                   DAGGER_ENGINE_POD_NAME="$(kubectl get pod \
